@@ -1,4 +1,7 @@
-use bevy::{prelude::*, render::camera::ScalingMode, transform};
+mod level_loader;
+
+use crate::level_loader::lever_loader::WorldManagementPlugin;
+use bevy::{prelude::*, render::camera::ScalingMode};
 
 #[derive(Component)]
 struct Momentum(Vec2);
@@ -79,6 +82,7 @@ fn camera_move_system(
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins.set(ImagePlugin::default_nearest()))
+        .add_plugins(WorldManagementPlugin)
         .add_systems(Startup, add_player)
         .add_systems(Startup, add_camera)
         .add_systems(Update, apply_momentum_system)
